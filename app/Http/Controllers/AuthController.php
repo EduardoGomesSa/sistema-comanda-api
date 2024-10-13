@@ -8,7 +8,6 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Resource_;
 
 class AuthController extends Controller
 {
@@ -34,10 +33,10 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request){
-        $user = $this->user->where('email', $request->email)->first();
+        $user = $this->user->where('name', $request->name)->first();
 
         if(!$user) {
-            return response(['error'=>'O email informado nao esta cadastrado'], 404);
+            return response(['error'=>'O usuário informado nao esta cadastrado'], 404);
         }
 
         if($user && Hash::check($request->password, $user->password)){
