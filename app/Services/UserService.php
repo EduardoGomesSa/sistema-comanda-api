@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserService {
@@ -35,6 +36,17 @@ class UserService {
 
         if($user && Hash::check($request->password, $user->password)){
             $token = $user->createToken('auth-token')->plainTextToken;
+            $user->token = $token;
+
+            return $user;
+        }
+
+        return new User();
+    }
+
+    public function validateToken(Request $request) : User{
+        if($token = $request->bearerToken()){
+            $user = auth('sanctum')->user();
             $user->token = $token;
 
             return $user;

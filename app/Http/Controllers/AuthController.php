@@ -42,10 +42,10 @@ class AuthController extends Controller
     }
 
     public function validateToken(Request $request){
-        if($token = $request->bearerToken()){
-            $user = auth('sanctum')->user();
-            $user->token = $token;
-            return new UserResource($user);
-        }
+        $user = $this->service->validateToken($request);
+
+        if(!$user->id) return response(['error'=>'Usuario não está logado'], 400);
+
+        return new UserResource($user);
     }
 }
