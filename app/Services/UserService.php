@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService {
     private User $user;
@@ -24,6 +26,21 @@ class UserService {
         $user->token = $token;
 
         return $user;
+    }
+
+    public function login(LoginRequest $request) : User{
+        $user = $this->user->where('name', $request->name)->first();
+
+        if(!$user) return new User();
+
+        if($user && Hash::check($request->password, $user->password)){
+            $token = $user->createToken('auth-token')->plainTextToken;
+            $user->token = $token;
+
+            return $user;
+        }
+
+        return new User();
     }
 
     private function convertToCreate(RegisterRequest $request) : User {
