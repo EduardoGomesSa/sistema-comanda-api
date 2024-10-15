@@ -8,16 +8,13 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    private $user;
     private $service;
 
-    public function __construct(User $user, UserService $service)
+    public function __construct(UserService $service)
     {
-        $this->user = $user;
         $this->service = $service;
     }
 
