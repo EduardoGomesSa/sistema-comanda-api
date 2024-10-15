@@ -13,8 +13,17 @@ class UserService {
         $this->user = $user;
     }
 
-    public function store(RegisterRequest $request){
+    public function store(RegisterRequest $request) : User{
+        $user = $this->user->create([
+            'name'=> $request->name,
+            'email'=>$request->email,
+            'password'=> bcrypt($request->password),
+        ]);
 
+        $token = $user->createToken('auth-token')->plainTextToken;
+        $user->token = $token;
+
+        return $user;
     }
 
     private function convertToCreate(RegisterRequest $request) : User {
