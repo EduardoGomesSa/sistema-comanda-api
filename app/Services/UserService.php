@@ -56,7 +56,7 @@ class UserService {
     }
 
     public function destroy(int $id) : bool{
-        return $this->user->delete($id) > 0;
+        return $this->user->destroy($id) > 0;
     }
 
     public function getById(int $id) : User {
