@@ -29,7 +29,15 @@ class UserController extends Controller
     }
 
     public function destroy (UserIdRequest $request){
-        $userExist =
+        $userExist = $this->service->getById($request->id);
+
+        if(!$userExist->id) return response(['error'=>'usuario nao existe'], 404);
+
+        $userDeleted = $this->service->destroy($userExist->id);
+
+        if(!$userDeleted) return response(['error'=>'usuario nao deletado'], 500);
+
+        return response(['message'=>'usuario deletado com sucesso'], 200);
     }
 
 }
