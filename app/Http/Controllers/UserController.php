@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserIdRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
@@ -25,6 +26,10 @@ class UserController extends Controller
         $resource = new UserResource($user);
 
         return $resource->response()->setStatusCode(201);
+    }
+
+    public function destroy (UserIdRequest $request){
+        $userExist =
     }
 
 }

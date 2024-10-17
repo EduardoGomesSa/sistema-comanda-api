@@ -55,6 +55,18 @@ class UserService {
         return new User();
     }
 
+    public function destroy(int $id) : bool{
+        return $this->user->delete($id) > 0;
+    }
+
+    public function getById(int $id) : User {
+        $user = $this->user->find($id);
+
+        if(!$user) return new User();
+
+        return $user;
+    }
+
     private function convertToCreate(RegisterRequest $request) : User {
         return new User([
 
