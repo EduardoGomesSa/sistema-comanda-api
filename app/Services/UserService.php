@@ -67,6 +67,10 @@ class UserService {
         return $user;
     }
 
+    public function index() {
+        return $this->user->get();
+    }
+
     private function convertToCreate(RegisterRequest $request) : User {
         return new User([
 

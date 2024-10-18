@@ -18,6 +18,15 @@ class UserController extends Controller
         $this->service = $service;
     }
 
+    public function index() {
+        $users = $this->service->index();
+
+        if(count($users) == 0) return response(['error'=>'nenhum usuario encontrado'], 404);
+
+        $resource = UserResource::collection($users);
+        return $resource->response()->setStatusCode(200);
+    }
+
     public function store (RegisterRequest $request){
         $user = $this->service->store($request);
 
