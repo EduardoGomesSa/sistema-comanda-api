@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getStatusAttribute($value){
+        return $value === 0 ? 'ativo' : 'inativo';
+    }
+
+    public function setStatusAttribute($value){
+        $this->attributes['status'] = $value === 'ativo' ? 0 : 1;
+    }
 }
