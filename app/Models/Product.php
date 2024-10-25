@@ -15,4 +15,12 @@ class Product extends Model
         'price',
         'status',
     ];
+
+    public function getStatusAttribute($value){
+        return $value === 0 ? 'disponivel' : 'indisponivel';
+    }
+
+    public function setStatusAttribute($value){
+        $this->attributes['status'] = $value === 'disponivel' ? 0 : 1;
+    }
 }
