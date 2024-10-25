@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -19,5 +20,13 @@ class ProductController extends Controller
         if(count($products) == 0) return response(['message'=>'nenhum produto encontrado'], 404);
 
         return $products->response()->setStatusCode(200);
+    }
+
+    public function store(ProductRequest $request){
+        $productCreated = $this->service->create($request);
+
+        if(!$productCreated) return response(['error' => 'produto nao foi criado'], 400);
+
+        return $productCreated->response()->setStatusCode(400);
     }
 }

@@ -20,7 +20,7 @@ class ProductService {
     }
 
     public function create(ProductRequest $request){
-        $productExist = $this->product->where('name', $request['name']);
+        $productExist = $this->product->where('name', $request['name'])->first();
 
         if($productExist) return null;
 
