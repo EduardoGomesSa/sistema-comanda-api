@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -16,5 +15,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/users', [UserController::class, 'store']);
     Route::delete('/users', [UserController::class, 'destroy']);
 
-    Route::get('/products', [Product::class, 'index']);
+    Route::get('/products', [ProductController::class, 'index']);
 });
