@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\ProductChangeStatusRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 
@@ -42,8 +43,16 @@ class ProductService {
         return $resource;
     }
 
-    public function update() {
+    public function update(ProductUpdateRequest $request) {
+        $productExist = $this->getById($request['id']);
 
+        if(!$productExist) return false;
+
+        $productUpdated = $productExist->update($request->all());
+
+        if($productUpdated > 0) return true;
+
+        return false;
     }
 
     public function changeStatus(ProductChangeStatusRequest $request) : bool{
