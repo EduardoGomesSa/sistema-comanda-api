@@ -10,4 +10,4 @@
 
 
 Modelo Entidade-Relacionamento do BD
-![sistema-comandas(1)](https://github.com/user-attachments/assets/d08929fb-da3d-4349-99a5-8c452fd708f4)
+![sistema-comandas(2)](https://github.com/user-attachments/assets/b3dc323a-1063-43d8-9ffd-795e2355f894)
