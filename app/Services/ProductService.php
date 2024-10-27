@@ -42,6 +42,10 @@ class ProductService {
         return $resource;
     }
 
+    public function update() {
+
+    }
+
     public function changeStatus(ProductChangeStatusRequest $request) : bool{
         $productExist = $this->getById($request['id']);
 
