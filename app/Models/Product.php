@@ -16,6 +16,10 @@ class Product extends Model
         'status',
     ];
 
+    public function inventories(){
+        return $this->hasMany(Inventory::class);
+    }
+
     public function getStatusAttribute($value){
         return $value === 0 ? 'disponivel' : 'indisponivel';
     }
