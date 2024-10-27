@@ -20,6 +20,14 @@ class ProductService {
         );
     }
 
+    public function getById($id) {
+        $product = $this->product->find($id);
+
+        if(!$product) return null;
+
+        return $product;
+    }
+
     public function create(ProductRequest $request){
         $productExist = $this->product->where('name', $request['name'])->first();
 
@@ -34,7 +42,15 @@ class ProductService {
         return $resource;
     }
 
-    public function changeStatus(ProductChangeStatusRequest $request){
+    public function changeStatus(ProductChangeStatusRequest $request) : bool{
+        $productExist = $this->getById($request['id']);
 
+        if(!$productExist) return false;
+
+        $productUpdated = $productExist->update($request->all());
+
+        if($productUpdated > 0) return true;
+
+        return false;
     }
 }
