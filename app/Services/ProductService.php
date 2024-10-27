@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ProductChangeStatusRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -31,5 +32,9 @@ class ProductService {
         $resource = new ProductResource($productCreated);
 
         return $resource;
+    }
+
+    public function changeStatus(ProductChangeStatusRequest $request){
+
     }
 }
