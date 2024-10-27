@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductChangeStatusRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,14 @@ class ProductController extends Controller
         if(!$productCreated) return response(['error' => 'produto nao foi criado'], 400);
 
         return $productCreated->response()->setStatusCode(400);
+    }
+
+    public function update(ProductUpdateRequest $request){
+        $productUpdated = $this->service->update($request);
+
+        if(!$productUpdated) return response(['error' => 'produto nao atualizado'], 400);
+
+        return response(['message' => 'produto atualizado com sucesso'], 201);
     }
 
     public function changeStatus(ProductChangeStatusRequest $request){
