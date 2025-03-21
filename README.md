@@ -11,3 +11,6 @@
 
 Modelo Entidade-Relacionamento do BD
 ![sistema-comandas(3)](https://github.com/user-attachments/assets/6fe0bd3f-fde7-4967-9cc8-50584a896479)
+
+##
+🚧 Em denvolvimento 🚧
